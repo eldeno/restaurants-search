@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Reset } from 'styled-reset';
 
 import theme from './theme';
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
+        <Reset />
         <Home />
       </ThemeProvider>
     </div>
