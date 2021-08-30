@@ -4,7 +4,7 @@ import MaterialIcon from '@material/react-material-icon';
 
 import logo from '../../assets/logo.svg';
 import restaurantImg from '../../assets/restaurante-fake.png';
-import { Card } from '../../components';
+import { Card, RestaurantCard } from '../../components';
 
 import { Container, Logo, Search, Wrapper, Map, CarouselTitle, Carousel } from './styles';
 
@@ -46,6 +46,7 @@ export function Home() {
             <Card photo={restaurantImg} title="Nome do restaurante" />
           </Carousel>
         </Search>
+        <RestaurantCard />
       </Container>
       <Map />
     </Wrapper>
