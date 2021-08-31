@@ -3,8 +3,10 @@ import Skeleton from '../Skeleton';
 
 import { Card, Title } from './styles';
 
-const ImageCard = ({ photo, title }) => {
+const ImageCard = ({ restaurant }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const photo = restaurant.photos ? restaurant.photos[0].getUrl() : restaurant.icon;
 
   useEffect(() => {
     const imageLoader = new Image();
@@ -16,7 +18,7 @@ const ImageCard = ({ photo, title }) => {
     <>
       {imageLoaded ? (
         <Card photo={photo}>
-          <Title>{title}</Title>
+          <Title>{restaurant.name}</Title>
         </Card>
       ) : (
         <Skeleton width="90px" height="90px" />

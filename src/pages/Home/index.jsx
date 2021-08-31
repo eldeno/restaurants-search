@@ -68,11 +68,7 @@ export function Home() {
               <CarouselTitle>Na sua área</CarouselTitle>
               <Carousel {...settings}>
                 {restaurants.map((restaurant) => (
-                  <Card
-                    photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurant.icon}
-                    title={restaurant.name}
-                    key={restaurant.place_id}
-                  />
+                  <Card restaurant={restaurant} key={restaurant.place_id} />
                 ))}
               </Carousel>
             </>
