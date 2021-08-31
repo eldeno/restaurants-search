@@ -10,25 +10,6 @@ export const MapContainer = (props) => {
   const [map, setMap] = useState(null);
   const { google, query, placeId } = props;
 
-  const getDetails = useCallback(
-    (placeId) => {
-      const service = new google.maps.places.PlacesService(map);
-      dispatch(setRestaurant(null));
-
-      const request = {
-        placeId,
-        fields: ['name', 'opening_hours', 'formatted_address', 'formatted_phone_number'],
-      };
-
-      service.getDetails(request, (place, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          dispatch(setRestaurant(place));
-        }
-      });
-    },
-    [google, map, dispatch]
-  );
-
   const searchByQuery = useCallback(
     (map, query) => {
       const service = new google.maps.places.PlacesService(map);
@@ -50,9 +31,28 @@ export const MapContainer = (props) => {
     [dispatch, google]
   );
 
+  const getDetails = useCallback(
+    (placeId) => {
+      const service = new google.maps.places.PlacesService(map);
+      dispatch(setRestaurant(null));
+
+      const request = {
+        placeId,
+        fields: ['name', 'opening_hours', 'formatted_address', 'formatted_phone_number'],
+      };
+
+      service.getDetails(request, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          dispatch(setRestaurant(place));
+        }
+      });
+    },
+    [google, map, dispatch]
+  );
+
   useEffect(() => {
     if (query) {
-      searchByQuery(query, map);
+      searchByQuery(map, query);
     }
   }, [query, map, searchByQuery]);
 
