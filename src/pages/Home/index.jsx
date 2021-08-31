@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
@@ -10,6 +11,7 @@ import { Container, Logo, Search, Wrapper, CarouselTitle, Carousel } from './sty
 
 export function Home() {
   const [inputValue, setInputValue] = useState('');
+  const { restaurants } = useSelector((state) => state.restaurants);
   const [query, setQuery] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -47,15 +49,14 @@ export function Home() {
           </TextField>
           <CarouselTitle>Na sua área</CarouselTitle>
           <Carousel {...settings}>
-            <Card photo={restaurantImg} title="Nome do restaurante" />
-            <Card photo={restaurantImg} title="Nome do restaurante" />
-            <Card photo={restaurantImg} title="Nome do restaurante" />
-            <Card photo={restaurantImg} title="Nome do restaurante" />
-            <Card photo={restaurantImg} title="Nome do restaurante" />
-            <Card photo={restaurantImg} title="Nome do restaurante" />
+            {restaurants.map((restaurant) => (
+              <Card restaurant={restaurant} key={restaurant.place_id} />
+            ))}
           </Carousel>
         </Search>
-        <RestaurantCard />
+        {restaurants.map((restaurant) => (
+          <RestaurantCard restaurant={restaurant} key={restaurant.place_id} />
+        ))}
       </Container>
       <Map query={query} />
       <Modal
