@@ -1,3 +1,9 @@
+# Restaurant Finder
+You can see the project running here:
+[Restaurant Finder](https://awesome-mcclintock-63f562.netlify.app/)
+
+![](screenshot-restaurant-finder.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
